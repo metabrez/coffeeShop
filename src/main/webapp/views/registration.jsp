@@ -52,6 +52,7 @@
 				<div class="form-group">
 					<div class="col-sm-9">
 						<button type="submit" class="btn btn-primary btn-block">Register User</button>
+						<a href="/home" class="btn btn-success">Home</a>
 					</div>
 				</div>
 				<h3>${successMessage}</h3>

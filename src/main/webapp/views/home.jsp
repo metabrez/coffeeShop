@@ -36,13 +36,22 @@
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="/">Products</a></li>
 							<li class=""><a href="/orders/view">Orders</a></li>
-							<li class=""><a href="/profile/view">Profile</a></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/login">Login</a></li>
+							<c:if test="${pageContext.request.userPrincipal.name ==null}">
+								<li><a href="<c:url value="/login"/>">Login</a></li>
+								<li><a href="<c:url value="/registration"/>">Register</a></li>
+							</c:if>
+							<c:if test="${pageContext.request.userPrincipal.name !=null}">
+								<li><a href="#">Welcome
+										${pageContext.request.userPrincipal.name}!</a></li>
+								<li class=""><a href="/profile/view">Profile</a></li>
+								<li><a href="<c:url value="/logout"/>">Logout</a></li>
+							</c:if>
+							<!-- <li><a href="/login">Login</a></li>
 							<li><a href="/registration">Register</a></li>
-							<li><a href="/logout">Logout</a></li>
+							<li><a href="/logout">Logout</a></li> -->
 
 						</ul>
 					</div>
