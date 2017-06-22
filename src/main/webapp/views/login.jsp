@@ -15,20 +15,22 @@
 </head>
 <div class="container col-lg-6 col-lg-offset-3">
 	<div class="row col-lg-6 col-lg-offset-3">
-
 		<form action="/login" method="POST" class="form-signin">
 			<h3 class="form-signin-heading">Welcome To Coffee Shop</h3>
 			<br />
-			<div c:if="${param.error}">
-				<div class="alert alert-danger">Invalid username and password.
-				</div>
-			</div>
+			<c:set var="err" value='<%=request.getParameter("error")%>' />
+			<c:if test="${err==true}">
+				<p>UserName or Password is not matched.
+				<p>
+			</c:if>
+
 			<input type="text" id="email" name="email" placeholder="Email"
 				class="form-control" /> <br /> <input type="password"
 				placeholder="Password" id="password" name="password"
 				class="form-control" /> <br />
 			<button class="btn btn-lg btn-primary btn-block btn-danger"
 				name="Submit" value="Login" type="Submit">Login</button>
+
 		</form>
 		<br /> <br /> <a href="/registration">Sign Up From Here</a>
 	</div>

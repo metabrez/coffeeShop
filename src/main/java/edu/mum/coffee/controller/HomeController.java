@@ -10,12 +10,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.mum.coffee.domain.FullUser;
@@ -59,7 +59,7 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
-
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public ModelAndView registration() {
 		ModelAndView modelAndView = new ModelAndView();
