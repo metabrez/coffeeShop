@@ -1,4 +1,4 @@
-package edu.mum.coffee.controller;
+package edu.mum.coffee.wsController;
 
 import java.net.URLDecoder;
 import java.util.List;

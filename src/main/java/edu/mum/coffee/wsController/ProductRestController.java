@@ -1,4 +1,4 @@
-package edu.mum.coffee.controller;
+package edu.mum.coffee.wsController;
 
 import java.util.List;
 
@@ -60,11 +60,11 @@ public class ProductRestController {
 
 	    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	    public ResponseEntity<Void> delete(@PathVariable("id") int id) {
-	        Product existingProduct = productService.getProduct(id);
-	        if (existingProduct == null) {
+	        Product currentProduct = productService.getProduct(id);
+	        if (currentProduct == null) {
 	            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	        } else {
-	            productService.delete(existingProduct);
+	            productService.delete(currentProduct);
 	            return new ResponseEntity<Void>(HttpStatus.GONE);
 	        }
 	    }
