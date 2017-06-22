@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>You are in!</title>
 </head>
-<body><h1>You made it!</h1>
+<body><h1>Welcome To Coffee Shop</h1>
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -21,7 +21,7 @@
 				<h2>Registration Form</h2>
 				<div class="form-group">
 					<div class="col-sm-9">
-						<input type="text" name="firstName" placeholder="Name" class="form-control" />
+						<input type="text" name="firstName" placeholder="First Name" class="form-control" />
 					</div>
 				</div>
 

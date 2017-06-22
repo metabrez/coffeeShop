@@ -15,57 +15,38 @@ import edu.mum.coffee.domain.Product;
 import edu.mum.coffee.service.ProductService;
 
 @RestController
-@RequestMapping("/product")
+
 public class ProductRestController {
 	
 	@Autowired
 	private ProductService productService;
+	@RequestMapping("/productWS")
+    public List<Product> getAll(){
+        return productService.getAllProduct();
+    }
+    
+    @RequestMapping(value = "/productWS/{id}", method=RequestMethod.GET)
+    public Product findById(@PathVariable int id){
+        return productService.getProduct(id);
+    }
+    
+    @RequestMapping(value = "/productWS", method=RequestMethod.POST)
+    public Product Add(@RequestBody Product product){
+        return productService.save(product);
+    }
+    
+    @RequestMapping(value = "/productWS/{id}", method=RequestMethod.PUT)
+    public Product update(@PathVariable int id,@RequestBody Product product){
+        return productService.save(product);
+    }
+    
+    @RequestMapping(value = "/productWS/{id}", method=RequestMethod.DELETE)
+    public void delete(@PathVariable int id){
+        Product product = productService.getProduct(id);
+        if(product != null)
+            productService.delete(product);
+    }
+       
+}
 	
-	 @RequestMapping(method = RequestMethod.POST)
-	    public ResponseEntity<Product> create(@RequestBody Product product) {
-	        product = productService.save(product);
-	        return new ResponseEntity<Product>(product, HttpStatus.CREATED);
-	    }
-
-	    @RequestMapping(method = RequestMethod.GET)
-	    public ResponseEntity<List<Product>> retrieveAll() {
-	    	 List<Product> products = productService.getAllProduct();
-	        if (products.isEmpty()) {
-	            return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);
-	        }
-	        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-	    }
-
-	    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	    public ResponseEntity<Product> retrieve(@PathVariable int id) {
-	    	 Product placedProduct = productService.getProduct(id);
-
-	        if (placedProduct == null) {
-	            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
-	        }
-	        return new ResponseEntity<Product>(placedProduct, HttpStatus.OK);
-	    }
-
-	    @RequestMapping(method = RequestMethod.PUT)
-	    public ResponseEntity<Void> update(@RequestBody Product product) {
-	        Product existingProduct = productService.getProduct(product.getId());
-
-	        if (existingProduct == null) {
-	            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-	        } else {
-	            productService.save(product);
-	            return new ResponseEntity<Void>(HttpStatus.OK);
-	        }
-	    }
-
-	    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	    public ResponseEntity<Void> delete(@PathVariable("id") int id) {
-	        Product currentProduct = productService.getProduct(id);
-	        if (currentProduct == null) {
-	            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-	        } else {
-	            productService.delete(currentProduct);
-	            return new ResponseEntity<Void>(HttpStatus.GONE);
-	        }
-	    }
-	}
+	 

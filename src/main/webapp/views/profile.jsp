@@ -33,18 +33,18 @@
 				
 				<div class="form-group">
 					<div class="col-sm-9">
-						<input type="text" name="lastName" placeholder="Last Name" class="form-control" value="${user.person.setEmail(email)}" />
+						<input type="text" name="email" placeholder="Email" class="form-control" value="${user.person.setEmail(email)}" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-9">
-						<input type="text" name="lastName" placeholder="Last Name" class="form-control" value="${user.person.setAddress(address)}" />
+						<input type="text" name="address" placeholder="Address" class="form-control" value="${user.person.setAddress(address)}" />
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<div class="col-sm-9">
-						<input type="text" name="lastName" placeholder="Last Name" class="form-control" value="${user.person.setPhone(phone)}" />
+						<input type="text" name="phone" placeholder="Phone" class="form-control" value="${user.person.setPhone(phone)}" />
 					</div>
 				</div>
 				

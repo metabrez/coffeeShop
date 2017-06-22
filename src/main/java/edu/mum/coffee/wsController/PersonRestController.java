@@ -18,63 +18,33 @@ import edu.mum.coffee.domain.Person;
 import edu.mum.coffee.service.PersonService;
 
 @RestController
-@RequestMapping("/person")
+
 public class PersonRestController {
 	
 	@Autowired
     PersonService personService;
+	 @RequestMapping(value = "/personWS", method=RequestMethod.GET)
+	    public List<Person> getAll(){
+	        return personService.getAllPerson();
+	    }
+	    @RequestMapping(value = "/personWS/{id}", method=RequestMethod.GET)
+	    public Person findById(@PathVariable long id){
+	        return personService.findById(id);
+	    }
+	   
+	    @RequestMapping(value = "/personWS", method=RequestMethod.POST)
+	    public Person Add(@RequestBody Person person){
+	        return personService.savePerson(person);
+	    }
+	    
+	    @RequestMapping(value = "/personWS/{id}", method=RequestMethod.PUT)
+	    public Person update(@PathVariable long id,@RequestBody Person person){
+	        return personService.savePerson(person);
+	    }
+	    
+	  
+	    
+	}
     
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(){
-    	return "Hello Tabrez this is just a test";
-    }
-    
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Person> create(@RequestBody Person person) {
-            person = personService.savePerson(person);
-            return new ResponseEntity<Person>(person, HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Person> retrieve(@PathVariable Long id) {
-        Person existingPerson = personService.findById(id);
-
-        if (existingPerson == null) {
-            return new ResponseEntity<Person>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<Person>(existingPerson, HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Person> update(@RequestBody Person person) {
-        Person existingPerson = personService.findById(person.getId());
-
-        if (existingPerson == null) {
-            return new ResponseEntity<Person>(HttpStatus.NOT_FOUND);
-        } else {
-            personService.savePerson(person);
-            return new ResponseEntity<Person>(existingPerson,HttpStatus.OK);
-        }
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        Person currentPerson = personService.findById(id);
-        if (currentPerson == null) {
-            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-        } else {
-            personService.removePerson(currentPerson);
-            return new ResponseEntity<Void>(HttpStatus.GONE);
-        }
-    }
-    
-    @RequestMapping(value = "/find", method = RequestMethod.GET)
-    public ResponseEntity<List<Person>> retrieveByPersonEmail(@PathParam("email") String email) {
-        String decoded = URLDecoder.decode(email);
-        List<Person> person = personService.findByEmail(decoded);
-        if (person == null) {
-            return new ResponseEntity<List<Person>>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<List<Person>>(person,HttpStatus.OK);
-        }
-    }}
+   
+	
